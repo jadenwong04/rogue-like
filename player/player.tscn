@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://vm3032cl8dik"]
+
+[ext_resource type="Script" path="res://item/weapon/regular_sword.gd" id="5_7it2w"]
+[ext_resource type="Script" path="res://fsm/state_machine.gd" id="26_roqi7"]
+[ext_resource type="Script" path="res://player/state/player_idle.gd" id="27_jx4p5"]
+[ext_resource type="Script" path="res://player/state/player_move.gd" id="28_3ay5b"]
+[ext_resource type="PackedScene" uid="uid://d1w8j3i2eoi4" path="res://item/Item.tscn" id="28_cqohj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3rs6"]
+radius = 5.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_j3rs6")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("26_roqi7")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("27_jx4p5")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("28_3ay5b")
+
+[node name="Item" parent="." instance=ExtResource("28_cqohj")]
+script = ExtResource("5_7it2w")

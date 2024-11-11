@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1w8j3i2eoi4"]
+
+[ext_resource type="Script" path="res://item/weapon/regular_axe.gd" id="1_8i1hv"]
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_8i1hv")
+metadata/_edit_vertical_guides_ = [-90.0]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Equipped" type="Sprite2D" parent="Node2D"]
+
+[node name="Action" type="AnimationPlayer" parent="."]
